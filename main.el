@@ -27,14 +27,17 @@
 
 ;; location for external packages.
 (setq load-path
-      (cons "~/.emacs.d/site-lisp/mmm"
       (cons "~/.emacs.d/site-lisp"
       (cons "/opt/scala/misc/scala-tool-support/emacs"
-            load-path))))
+            load-path)))
 
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+;; better default window titles
+(setq frame-title-format
+      (concat  "%b - emacs@" (system-name)))
 
 ;; default to unified diffs
 (setq diff-switches "-u")
@@ -45,10 +48,12 @@
 (global-set-key [?\C-z] 'undo)
 (global-set-key [?\M-[] 'previous-tab-or-buffer)
 (global-set-key [?\M-]] 'next-tab-or-buffer)
+(server-start)
 
 ;; Global
 (setq-default indent-tabs-mode nil)
 (global-auto-revert-mode t)
+(put 'narrow-to-region 'disabled nil)
 
 ;; C/C++
 (setq-default c-basic-offset 4)
@@ -82,7 +87,6 @@
 ;; Dired
 (set-variable 'completion-ignored-extensions
               (cons ".pbc" completion-ignored-extensions))
-(put 'narrow-to-region 'disabled nil)
 
 ;; C#
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
@@ -100,4 +104,5 @@
         (add-hook hook (lambda ()
                          (setq show-trailing-whitespace t))))
       '(python-mode-hook csharp-mode-hook c-mode-hook cperl-mode-hook
-        java-mode-hook nxml-mode-hook scala-mode-hook))
+        java-mode-hook nxml-mode-hook scala-mode-hook
+        c++-mode-hook javascript-mode-hook))
