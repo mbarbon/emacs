@@ -93,6 +93,10 @@
 (setq auto-mode-alist
    (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
 
+;; HaXe
+(autoload 'haxe-mode "haxe-mode" "Yay HaXe" t)
+(setq auto-mode-alist (cons '("\\.hx$" . haxe-mode) auto-mode-alist))
+
 ;; Ack
 (require 'ack)
 
