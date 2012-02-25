@@ -1,0 +1,3 @@
+[submodule "site-lisp/project-mode"]
+	path = site-lisp/project-mode
+	url = https://github.com/kurtharriger/emacs-project-mode.git

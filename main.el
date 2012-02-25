@@ -28,9 +28,10 @@
 
 ;; location for external packages.
 (setq load-path
+      (cons "~/.emacs.d/site-lisp/project-mode"
       (cons "~/.emacs.d/site-lisp"
       (cons "/opt/scala/misc/scala-tool-support/emacs"
-            load-path)))
+            load-path))))
 
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -94,6 +95,9 @@
 
 ;; Ack
 (require 'ack)
+
+;; Project mode
+(autoload 'project-mode "project-mode" "Project Mode" t)
 
 ;; emacs client
 (add-hook 'server-visit-hook 'make-frame)
