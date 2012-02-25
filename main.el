@@ -5,6 +5,7 @@
   (setq mac-command-modifier 'meta)
   (cua-mode 0)
   (setq x-select-enable-clipboard t)
+  (global-set-key [?\M-`] 'next-multiframe-window)
   )
 
 ;; some custom key bindings
