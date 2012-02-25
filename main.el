@@ -29,9 +29,10 @@
 ;; location for external packages.
 (setq load-path
       (cons "~/.emacs.d/site-lisp/project-mode"
+      (cons "~/.emacs.d/site-lisp/auto-complete-mode"
       (cons "~/.emacs.d/site-lisp"
       (cons "/opt/scala/misc/scala-tool-support/emacs"
-            load-path))))
+            load-path)))))
 
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")

@@ -1,3 +1,6 @@
 [submodule "site-lisp/project-mode"]
 	path = site-lisp/project-mode
 	url = https://github.com/kurtharriger/emacs-project-mode.git
+[submodule "site-lisp/auto-complete-mode"]
+	path = site-lisp/auto-complete-mode
+	url = http://cx4a.org/repo/auto-complete.git/
