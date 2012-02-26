@@ -99,6 +99,7 @@
 
 ;; Project mode
 (autoload 'project-mode "project-mode" "Project Mode" t)
+(setq project-proj-files-dir "~/.emacs.d/state/project-mode")
 
 ;; emacs client
 (add-hook 'server-visit-hook 'make-frame)
