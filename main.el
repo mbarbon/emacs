@@ -48,6 +48,7 @@
 (setq make-backup-files nil)
 (setq-default column-number-mode t)
 (tool-bar-mode -1)
+(set-scroll-bar-mode 'right)
 (transient-mark-mode t)
 (global-set-key [?\C-z] 'undo)
 (global-set-key [?\M-[] 'previous-tab-or-buffer)
