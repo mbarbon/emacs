@@ -75,12 +75,6 @@
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.chm$" . cperl-mode) auto-mode-alist))
 
-;; Python
-(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-(setq interpreter-mode-alist (cons '("python" . python-mode)
-                                   interpreter-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-
 ;; Scala
 (require 'scala-mode-auto)
 (setq-default scala-mode-indent:step 4)
