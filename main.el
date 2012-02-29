@@ -73,7 +73,6 @@
 (setq auto-mode-alist (cons '("\\.[pP][lLmM]$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pod$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.chm$" . cperl-mode) auto-mode-alist))
 
 ;; Scala
 (require 'scala-mode-auto)
