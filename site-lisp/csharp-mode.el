@@ -1353,9 +1353,11 @@ wrote this alternative.
                                  limit t)
 
                            (unless
-                               (progn
-                                 (goto-char (match-beginning 0))
-                                 (c-skip-comments-and-strings limit))
+                               (or
+                                 (member (match-string 3) (c-lang-const c-block-stmt-2-kwds))
+                                 (progn
+                                   (goto-char (match-beginning 0))
+                                   (c-skip-comments-and-strings limit)))
 
                              (goto-char (match-end 0))
 
