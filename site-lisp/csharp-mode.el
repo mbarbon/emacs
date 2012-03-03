@@ -1822,7 +1822,7 @@ wrote this alternative.
 ;; Statement keywords followed directly by a substatement.
 ;; catch is not one of them, because catch has a paren (typically).
 (c-lang-defconst c-block-stmt-1-kwds
-  csharp '("do" "try" "finally" "unsafe"))
+  csharp '("do" "try" "finally" "unsafe" "else"))
 
 
 ;; Statement keywords followed by a paren sexp and then by a substatement.
