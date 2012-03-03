@@ -1,7 +1,9 @@
 ; -*- mode: lisp -*-
 
+(set 'is-aquamacs (boundp 'aquamacs-version))
+
 ;; for Aquamacs
-(when (boundp 'aquamacs-version)
+(when is-aquamacs
   (setq mac-command-modifier 'meta)
   (cua-mode 0)
   (setq x-select-enable-clipboard t)
@@ -12,8 +14,10 @@
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
 (define-key my-keys-minor-mode-map (kbd "\C-z") 'undo)
-(define-key my-keys-minor-mode-map (kbd "\M-[") 'previous-tab-or-buffer)
-(define-key my-keys-minor-mode-map (kbd "\M-]") 'next-tab-or-buffer)
+(when is-aquamacs
+  (define-key my-keys-minor-mode-map (kbd "\M-[") 'previous-tab-or-buffer)
+  (define-key my-keys-minor-mode-map (kbd "\M-]") 'next-tab-or-buffer)
+  )
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
@@ -51,9 +55,12 @@
 (set-scroll-bar-mode 'right)
 (transient-mark-mode t)
 (global-set-key [?\C-z] 'undo)
-(global-set-key [?\M-[] 'previous-tab-or-buffer)
-(global-set-key [?\M-]] 'next-tab-or-buffer)
 (server-start)
+
+(when is-aquamacs
+  (global-set-key [?\M-[] 'previous-tab-or-buffer)
+  (global-set-key [?\M-]] 'next-tab-or-buffer)
+  )
 
 ;; Global
 (setq-default indent-tabs-mode nil)
