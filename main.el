@@ -76,6 +76,10 @@
   (lambda()
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
+(add-hook 'python-mode-hook
+  (lambda()
+    (require 'guess-style)
+    (guess-style-guess-all)))
 
 ;; Perl
 (setq-default cperl-indent-level 4)
