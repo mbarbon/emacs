@@ -1,4 +1,5 @@
 auto-save-list/.saves*
 custom.el
+local-config.el
 state/*
 *.elc

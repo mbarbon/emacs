@@ -1,0 +1,5 @@
+;; -*- mode: lisp -*-
+
+(setq load-path
+      (cons "/opt/scala/misc/scala-tool-support/emacs"
+            load-path))
