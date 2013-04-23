@@ -118,7 +118,7 @@
 (setq project-proj-files-dir "~/.emacs.d/state/project-mode")
 
 ;; emacs client
-(add-hook 'server-visit-hook 'make-frame)
+(add-hook 'server-visit-hook 'raise-frame)
 
 ;; show trailing white-spaces
 (mapc (lambda (hook)
