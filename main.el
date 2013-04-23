@@ -90,8 +90,9 @@
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
 
 ;; Scala
-(require 'scala-mode-auto)
-(setq-default scala-mode-indent:step 4)
+(when (require 'scala-mode-auto nil 'noerror)
+  (setq-default scala-mode-indent:step 4)
+  )
 
 ;; Dired
 (set-variable 'completion-ignored-extensions
