@@ -134,3 +134,7 @@
       '(python-mode-hook csharp-mode-hook c-mode-hook cperl-mode-hook
         java-mode-hook nxml-mode-hook scala-mode-hook
         c++-mode-hook javascript-mode-hook))
+
+;; load more local configuration
+(if (file-exists-p "~/.emacs.d/site-init.el")
+  (load-file "~/.emacs.d/site-init.el"))
