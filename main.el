@@ -38,8 +38,9 @@
 (setq load-path
       (cons "~/.emacs.d/site-lisp/project-mode"
       (cons "~/.emacs.d/site-lisp/auto-complete-mode"
+      (cons "~/.emacs.d/site-lisp/mmm-mode"
       (cons "~/.emacs.d/site-lisp"
-            load-path))))
+            load-path)))))
 
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -96,6 +97,12 @@
 (when (require 'scala-mode-auto nil 'noerror)
   (setq-default scala-mode-indent:step 4)
   )
+
+;; HTML/JS/Mason
+(require 'mmm-auto)
+(setq mmm-global-mode 'maybe)
+(setq mmm-submode-decoration-level 0)
+(mmm-add-mode-ext-class 'html-mode nil 'html-js)
 
 ;; Dired
 (set-variable 'completion-ignored-extensions
