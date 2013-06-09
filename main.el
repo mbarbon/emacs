@@ -124,7 +124,12 @@
 
 ;; Project mode
 (autoload 'project-mode "project-mode" "Project Mode" t)
-(setq project-proj-files-dir "~/.emacs.d/state/project-mode")
+(eval-after-load "project-mode"
+  '(progn
+     (setq project-proj-files-dir "~/.emacs.d/state/project-mode")
+     (setq project-fuzzy-match-tolerance-default 10)
+     (setq project-search-exclusion-regexes-default
+           (cons "/blib/" project-search-exclusion-regexes-default))))
 
 ;; emacs client
 (add-hook 'server-visit-hook 'raise-frame)
