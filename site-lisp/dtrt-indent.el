@@ -197,9 +197,13 @@ transparently."
 ;;              ("\\["                   0   "\\]"      t)
 ;;              ("{"                     0   "}"        t))
 
+    (css        ("\""                    0   "\""       nil "\\\\.")
+                ("'"                     0   "'"        nil "\\\\.")
+                ("[/][*]"                0   "[*][/]"   nil))
+
     (shell      ("\""                    0   "\""       nil "\\.")
                 ("'"                     0   "'"        nil "\\.")
-                ("[<][<]\\([^ \t]+\\)"   1   "^\\1"     nil)
+                ("[<][<]\\\\?\\([^ \t]+\\)"   1   "^\\1"     nil)
                 ("("                     0   ")"        t)
                 ("\\["                   0   "\\]"      t)))
 
@@ -239,7 +243,7 @@ quote, for example.")
     (c++-mode        c/c++/java    c-basic-offset)       ; C++
     (java-mode       c/c++/java    c-basic-offset)       ; Java
     (jde-mode        c/c++/java    c-basic-offset)       ; Java (JDE)
-    (javascript-mode c/c++/java    c-basic-offset)       ; JavaScript
+    (js-mode         c/c++/java    js-indent-level)      ; JavaScript
     (objc-mode       c/c++/java    c-basic-offset)       ; Objective C
     (php-mode        c/c++/java    c-basic-offset)       ; PHP
     (perl-mode       perl          perl-indent-level)    ; Perl
@@ -247,6 +251,7 @@ quote, for example.")
     (ruby-mode       ruby          ruby-indent-level)    ; Ruby
     (ada-mode        ada           ada-indent)           ; Ada
     (sh-mode         shell         sh-basic-offset)      ; Shell Script
+    (css-mode        css           css-indent-offset)    ; CSS
     (pascal-mode     pascal        pascal-indent-level)) ; Pascal
    "A mapping from hook variables to language types.")
 
@@ -568,8 +573,9 @@ constrains the search to the current line."
                 (if (> (nth 1 matching-syntax-entry) 0)
                     (dtrt-indent--replace-in-string
                      (nth 2 matching-syntax-entry)
-                     "[\\][1]" (match-string-no-properties
-                                (1+ match-index)))
+                     "[\\][1]" (regexp-quote
+				(match-string-no-properties
+				 (1+ match-index))))
                   (nth 2 matching-syntax-entry))
                 (nth 4 matching-syntax-entry)
                 (when (nth 3 matching-syntax-entry) syntax-regex-pairs)
@@ -674,6 +680,12 @@ rejected: too few distinct matching offsets (%d required)"
                     dtrt-indent-min-matching-indentations))
            (t
             nil)))))
+
+(defun dtrt-indent--search-hook-mapping(mode)
+  "Search hook-mapping for MODE or its derived-mode-parent."
+  (if mode
+      (or (assoc mode dtrt-indent-hook-mapping-list)
+          (dtrt-indent--search-hook-mapping (get mode 'derived-mode-parent)))))
 
 (defun dtrt-indent--analyze (histogram-and-total-lines)
   "Analyze the histogram.
@@ -797,12 +809,8 @@ merged with offset %s (%.2f%% deviation, limit %.2f%%)"
 
 (defun dtrt-indent-try-set-offset ()
   "Try adjusting the current buffer's indentation offset."
-  (let ((language-and-variable
-         (cdr (assoc major-mode
-                     dtrt-indent-hook-mapping-list))))
-
+  (let ((language-and-variable (cdr (dtrt-indent--search-hook-mapping major-mode))))
     (when language-and-variable
-
       (let* ((result
               (dtrt-indent--analyze
                (dtrt-indent--calc-histogram
@@ -824,8 +832,9 @@ merged with offset %s (%.2f%% deviation, limit %.2f%%)"
         (cond
          ((and best-guess
                (not rejected)
-               (not (eq (symbol-value indent-offset-variable)
-                        best-indent-offset)))
+               (or (not (eq (symbol-value indent-offset-variable)
+                         best-indent-offset))
+                   (not (eq indent-tabs-mode indent-tabs-mode-setting))))
 
           (if dtrt-indent-explicit-offset
               (message "\
@@ -887,7 +896,7 @@ Indentation offset set with file variable; not adjusted")
   (interactive)
   (if (null dtrt-indent-original-indent)
       (message "No dtrt-indent override to undo in this buffer")
-    (let ((info 
+    (let ((info
            (concat
             (if (nth 2 dtrt-indent-original-indent)
                 (progn
@@ -932,8 +941,7 @@ Note: killed buffer-local value for %s, restoring to default %d"
 
 Disable dtrt-indent if offset explicitly set."
   (cond
-   ((eql (nth 2 (assoc major-mode
-                       dtrt-indent-hook-mapping-list))
+   ((eql (nth 2 (dtrt-indent--search-hook-mapping major-mode))
          (ad-get-arg 0))
     (setq dtrt-indent-explicit-offset t))
    ((eql 'indent-tab-mode
@@ -949,12 +957,12 @@ Disable dtrt-indent if offset explicitly set."
     (setq global-mode-string
           (append global-mode-string '(dtrt-indent-mode-line-info))))
 
-(autoload 'dtrt-indent-diagnosis "dtrt-indent-diag" 
-  "Guess indentation for the current buffer and output diagnostics." 
+(autoload 'dtrt-indent-diagnosis "dtrt-indent-diag"
+  "Guess indentation for the current buffer and output diagnostics."
   t)
 
-(autoload 'dtrt-indent-highlight "dtrt-indent-diag" 
-  "Highlight non-excluded indentation in the current buffer." 
+(autoload 'dtrt-indent-highlight "dtrt-indent-diag"
+  "Highlight non-excluded indentation in the current buffer."
   t)
 
 (provide 'dtrt-indent)
