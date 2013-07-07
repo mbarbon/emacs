@@ -81,6 +81,7 @@
 (autoload 'dtrt-indent-mode "dtrt-indent" "Autodetect indentation" t)
 (autoload 'guess-style-guess-all "guess-style" "Guess Python style" t)
 (add-hook 'c-mode-common-hook 'dtrt-indent-mode)
+(add-hook 'cperl-mode-hook 'dtrt-indent-mode)
 (add-hook 'python-mode-hook 'guess-style-guess-all)
 
 ;; Perl
