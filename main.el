@@ -78,14 +78,10 @@
 (setq c-default-style "stroustrup")
 
 ;; Auto-indent mode
-(add-hook 'c-mode-common-hook
-  (lambda()
-    (require 'dtrt-indent)
-    (dtrt-indent-mode t)))
-(add-hook 'python-mode-hook
-  (lambda()
-    (require 'guess-style)
-    (guess-style-guess-all)))
+(autoload 'dtrt-indent-mode "dtrt-indent" "Autodetect indentation" t)
+(autoload 'guess-style-guess-all "guess-style" "Guess Python style" t)
+(add-hook 'c-mode-common-hook 'dtrt-indent-mode)
+(add-hook 'python-mode-hook 'guess-style-guess-all)
 
 ;; Perl
 (setq-default cperl-indent-level 4)
