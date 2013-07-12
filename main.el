@@ -42,6 +42,9 @@
       (cons "~/.emacs.d/site-lisp/scala-mode2"
       (cons "~/.emacs.d/site-lisp"
             load-path))))))
+(setq load-path
+      (append load-path
+              '("~/.emacs.d/site-lisp/python-mode")))
 
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -92,6 +95,10 @@
 (setq auto-mode-alist (cons '("\\.[pP][lLmM]$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pod$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
+
+;; Python
+(autoload 'python-mode "python-mode" "Python mode" t)
+(setq auto-mode-alist (cons '("\\.py" . python-mode) auto-mode-alist))
 
 ;; Scala
 (autoload 'scala-mode "scala-mode2" "Scala Mode" t)
