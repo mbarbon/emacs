@@ -7,3 +7,6 @@
 [submodule "site-lisp/mmm-mode"]
 	path = site-lisp/mmm-mode
 	url = https://github.com/purcell/mmm-mode.git
+[submodule "site-lisp/scala-mode2"]
+	path = site-lisp/scala-mode2
+	url = https://github.com/hvesalai/scala-mode2.git

@@ -39,8 +39,9 @@
       (cons "~/.emacs.d/site-lisp/project-mode"
       (cons "~/.emacs.d/site-lisp/auto-complete-mode"
       (cons "~/.emacs.d/site-lisp/mmm-mode"
+      (cons "~/.emacs.d/site-lisp/scala-mode2"
       (cons "~/.emacs.d/site-lisp"
-            load-path)))))
+            load-path))))))
 
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -93,9 +94,8 @@
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
 
 ;; Scala
-(when (require 'scala-mode-auto nil 'noerror)
-  (setq-default scala-mode-indent:step 4)
-  )
+(autoload 'scala-mode "scala-mode2" "Scala Mode" t)
+(setq auto-mode-alist (cons '("\\.scala$" . scala-mode) auto-mode-alist))
 
 ;; HTML/JS/Mason
 (require 'mmm-auto)
