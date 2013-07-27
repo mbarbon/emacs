@@ -46,6 +46,9 @@
       (append load-path
               '("~/.emacs.d/site-lisp/python-mode")))
 
+;; Automatically compile local files
+(byte-recompile-directory (expand-file-name "~/.emacs.d/site-lisp") 0)
+
 ;; customization to separate file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
