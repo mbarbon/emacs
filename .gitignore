@@ -1,6 +1,6 @@
-auto-save-list/.saves*
-custom.el
-local-config.el
-site-init.el
-state/*
+/auto-save-list/.saves*
+/custom.el
+/local-config.el
+/site-init.el
+/state/*
 *.elc
