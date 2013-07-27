@@ -3,4 +3,5 @@
 /local-config.el
 /site-init.el
 /state/*
+/elpa
 *.elc

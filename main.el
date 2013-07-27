@@ -72,6 +72,12 @@
   (global-set-key [?\M-]] 'next-tab-or-buffer)
   )
 
+;; Packages
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")
+        ("melpa" . "http://melpa.milkbox.net/packages/")))
+
 ;; Global
 (setq-default indent-tabs-mode nil)
 (global-auto-revert-mode t)
