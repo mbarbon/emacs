@@ -117,7 +117,7 @@
 (setq auto-mode-alist (cons '("\\.hx$" . haxe-mode) auto-mode-alist))
 
 ;; Ack
-(require 'ack)
+(autoload 'ack "ack" "Ack Mode" t)
 
 ;; Project mode
 (autoload 'project-mode "project-mode" "Project Mode" t)
