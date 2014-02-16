@@ -98,7 +98,10 @@
 (add-hook 'python-mode-hook 'guess-style-guess-all)
 
 ;; Perl
-(setq-default cperl-indent-level 4)
+(setq-default cperl-indent-level 4
+              cperl-close-paren-offset -4
+              cperl-continued-statement-offset 4
+              cperl-indent-parens-as-block t)
 
 (autoload 'cperl-mode "cperl-mode" "Yay Perl" t)
 (setq auto-mode-alist (cons '("\\.[pP][lLmM]$" . cperl-mode) auto-mode-alist))
