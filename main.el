@@ -75,6 +75,8 @@
   (global-set-key [?\M-]] 'next-tab-or-buffer)
   )
 
+(setq bookmark-default-file "~/.emacs.d/state/bookmarks")
+
 ;; Packages
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
