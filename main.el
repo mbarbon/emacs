@@ -149,6 +149,31 @@
      (setq project-search-exclusion-regexes-default
            (cons "/blib/" project-search-exclusion-regexes-default))))
 
+;; Tramp
+(setq tramp-persistency-file-name "~/.emacs.d/state/tramp")
+(setq tramp-default-method "ssh")
+(setq tramp-use-ssh-controlmaster-options-nil)
+(add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))
+
+; show remote host in modeline
+(defconst my-mode-line-buffer-identification
+  (list
+   '(:eval
+     (let ((host-name
+            (or (file-remote-p default-directory 'host)
+                (system-name))))
+       (if (string-match "^[^0-9][^.]*\\(\\..*\\)" host-name)
+           (substring host-name 0 (match-beginning 1))
+         host-name)))
+   ": %12b"))
+
+(setq-default mode-line-buffer-identification
+              my-mode-line-buffer-identification)
+(add-hook 'dired-mode-hook
+          (lambda () (setq mode-line-buffer-identification
+                           my-mode-line-buffer-identification)))
+
 ;; emacs client
 (add-hook 'server-visit-hook 'raise-frame)
 
