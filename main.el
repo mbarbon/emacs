@@ -46,6 +46,15 @@
       (append load-path
               '("~/.emacs.d/site-lisp/python-mode")))
 
+;; use xterm colors when under screen
+(defun terminal-init-screen ()
+  "Terminal initialization function for screen."
+   ;; Use the xterm color initialization code.
+   (custom-set-variables '(frame-background-mode 'light))
+   (load "term/xterm")
+   (xterm-register-default-colors)
+   (tty-set-up-initial-frame-faces))
+
 ;; Automatically compile local files
 (byte-recompile-directory (expand-file-name "~/.emacs.d/site-lisp") 0)
 
