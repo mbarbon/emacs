@@ -66,6 +66,9 @@
 (setq frame-title-format
       (concat  "%b - emacs@" (system-name)))
 
+;; column for M-q word wrap
+(set-fill-column 78)
+
 ;; default to unified diffs
 (setq diff-switches "-u")
 
