@@ -40,8 +40,9 @@
       (cons "~/.emacs.d/site-lisp/auto-complete-mode"
       (cons "~/.emacs.d/site-lisp/mmm-mode"
       (cons "~/.emacs.d/site-lisp/scala-mode2"
+      (cons "~/.emacs.d/site-lisp/geben"
       (cons "~/.emacs.d/site-lisp"
-            load-path))))))
+            load-path)))))))
 (setq load-path
       (append load-path
               '("~/.emacs.d/site-lisp/python-mode")))
@@ -185,6 +186,9 @@
 (add-hook 'dired-mode-hook
           (lambda () (setq mode-line-buffer-identification
                            my-mode-line-buffer-identification)))
+
+;; Geben on emacs
+(load-file "~/.emacs.d/setup-geben.el")
 
 ;; emacs client
 (add-hook 'server-visit-hook 'raise-frame)
