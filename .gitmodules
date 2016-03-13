@@ -7,3 +7,6 @@
 [submodule "site-lisp/scala-mode2"]
 	path = site-lisp/scala-mode2
 	url = https://github.com/hvesalai/scala-mode2.git
+[submodule "site-list/geben"]
+        path = site-lisp/geben
+        url = https://github.com/mbarbon/geben.git
