@@ -165,7 +165,7 @@
 ;; Tramp
 (setq tramp-persistency-file-name "~/.emacs.d/state/tramp")
 (setq tramp-default-method "ssh")
-(setq tramp-use-ssh-controlmaster-options-nil)
+(setq tramp-use-ssh-controlmaster-options nil)
 (add-to-list 'backup-directory-alist
              (cons tramp-file-name-regexp nil))
 
