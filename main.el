@@ -199,7 +199,7 @@
                          (setq show-trailing-whitespace t))))
       '(python-mode-hook csharp-mode-hook c-mode-hook cperl-mode-hook
         java-mode-hook nxml-mode-hook scala-mode-hook
-        c++-mode-hook javascript-mode-hook))
+        c++-mode-hook js-mode-hook))
 
 ;; load more local configuration
 (if (file-exists-p "~/.emacs.d/site-init.el")
